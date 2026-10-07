@@ -11,3 +11,7 @@ The site is plain HTML and CSS, with no client-side JavaScript, external fonts o
 The Engineering Index is the editorial source for the detailed narrative. When it changes, synchronize the corresponding HTML sections, review the opening and project cards, and update the sitemap date only for a substantive change. Validate links, visible text, accessibility, structured data and crawler policy before publishing.
 
 The JSON-LD describes the visible person and public repositories. `robots.txt` allows OAI-SearchBot for search discovery and separately disallows GPTBot. Those are independent crawler preferences; neither policy guarantees indexing or citations.
+
+## Browser verification
+
+The Site checks workflow uses Chromium and axe to check light/dark desktop, tablet and mobile layouts, keyboard skip navigation, horizontal overflow, local fragment links and content with JavaScript disabled. Screenshots and the accessibility report are retained as workflow artifacts. These automated checks complement manual review; they are not a complete accessibility certification. Verification dependencies are isolated under `.github/check` and are not used by the website.
