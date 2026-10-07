@@ -4,6 +4,15 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'Optional HTTPS URL for live Pages verification'
+        required: false
+        type: string
+      profile_url:
+        description: 'Optional public GitHub profile or README URL'
+        required: false
+        type: string
 permissions:
   contents: read
 concurrency:
@@ -26,6 +35,9 @@ jobs:
           npm ci --ignore-scripts --no-audit --no-fund
           npx playwright install --with-deps chromium
       - name: Check responsive rendering and accessibility
+        env:
+          SITE_URL: ${{ inputs.site_url }}
+          PROFILE_URL: ${{ inputs.profile_url }}
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > "$RUNNER_TEMP/site-http.log" 2>&1 &
           site_server_pid=$!
