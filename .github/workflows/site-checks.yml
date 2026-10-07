@@ -43,6 +43,7 @@ jobs:
       - name: Check deployed Pages
         if: github.event_name == 'workflow_dispatch' && inputs.verify_live
         env:
+          VERIFY_PROFILE: 'true'
           SITE_URL: https://nima0101.github.io/
           SITE_ARTIFACTS: site-artifacts/live
         run: node .github/check/site.cjs

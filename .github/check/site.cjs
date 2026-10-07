@@ -63,6 +63,27 @@ const assert = require('node:assert/strict');
       results.push({ name, ...rendered, violations: audit.violations, incomplete: audit.incomplete.map(x => ({ id: x.id, nodes: x.nodes.length })), passedRules: audit.passes.length });
       await context.close();
     }
+    if (process.env.VERIFY_PROFILE === 'true') {
+      for (const width of [320, 390, 768, 1440]) {
+        const page = await browser.newPage({ viewport: { width, height: 1000 } });
+        const response = await page.goto('https://github.com/Nima0101', { waitUntil: 'domcontentloaded' });
+        assert.equal(response.status(), 200);
+        const readme = page.locator('.markdown-body').filter({ hasText: 'Contingram · AI-agent systems' });
+        await readme.waitFor();
+        assert.match(await readme.innerText(), /Created and maintained by Nima Khaki/);
+        assert.match(await readme.innerText(), /UNKNOWN/);
+        assert.match(await readme.innerText(), /acceptance gates/);
+        assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'Profile page overflow');
+        assert.equal(await readme.locator('img:not([alt])').count(), 0);
+        for (const img of await readme.locator('img').all()) {
+          await img.scrollIntoViewIfNeeded();
+          await img.evaluate(el => el.decode());
+        }
+        await readme.screenshot({ path: `${output}/profile-${width}.png` });
+        results.push({ name: `live-profile-${width}`, status: response.status(), violations: [] });
+        await page.close();
+      }
+    }
     fs.writeFileSync(`${output}/report.json`, JSON.stringify(results, null, 2));
     console.log(JSON.stringify(results, null, 2));
     assert.equal(results.reduce((n, r) => n + r.violations.length, 0), 0, 'Accessibility violations');
