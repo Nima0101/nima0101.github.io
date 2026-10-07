@@ -29,6 +29,16 @@ jobs:
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
           node-version: '22'
+      - name: Validate image streams
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y libjpeg-turbo-progs webp
+          image_failures=0
+          for image_path in assets/projects/*.jpg; do
+            djpeg -outfile /dev/null "$image_path" || image_failures=1
+          done
+          dwebp assets/projects/bistam-rider.webp -o /dev/null || image_failures=1
+          exit "$image_failures"
       - name: Install verification tools
         working-directory: .github/check
         run: |

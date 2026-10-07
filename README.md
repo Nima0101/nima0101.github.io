@@ -16,6 +16,6 @@ The JSON-LD describes the visible person and public repositories. `robots.txt` a
 
 ## Browser verification
 
-The Site checks workflow uses Chromium and axe to check light/dark desktop, tablet and mobile layouts, keyboard skip navigation, horizontal overflow, local fragment links and content with JavaScript disabled. It also checks all seven images for successful loading, alt text, aspect ratio and no upscaling. Manual workflow inputs `site_url` and `profile_url` enable HTTPS live-site and GitHub-rendered README checks. `SITE_URL` and optional `BROWSER_EXECUTABLE` support local verification.
+The Site checks workflow first validates JPEG/WebP streams with native decoders, then uses Chromium and axe to check light/dark desktop, tablet and mobile layouts, keyboard skip navigation, horizontal overflow, local fragment links and content with JavaScript disabled. It also checks all seven images for successful loading, alt text, aspect ratio and no upscaling. Manual workflow inputs `site_url` and `profile_url` enable HTTPS live-site and GitHub-rendered README checks. `SITE_URL` and optional `BROWSER_EXECUTABLE` support local verification.
 
 Screenshots and the accessibility report are retained as workflow artifacts. These automated checks complement manual review; they are not a complete accessibility certification. Verification dependencies are isolated under `.github/check` and are not used by the website.
