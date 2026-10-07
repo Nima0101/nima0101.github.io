@@ -32,6 +32,9 @@ const assert = require('node:assert/strict');
         visibleText: document.body.innerText.length,
       }));
       assert.match(rendered.h1, /Nima Khaki/);
+      if (rendered.overflow) {
+        console.error(await page.evaluate(() => [...document.querySelectorAll('main *')].filter(e => e.getBoundingClientRect().right > innerWidth).map(e => ({ tag: e.tagName, class: e.className, text: e.textContent.slice(0,160) }))));
+      }
       assert.equal(rendered.overflow, false, `${name}: horizontal overflow`);
       assert.deepEqual(rendered.brokenFragments, []);
       assert.ok(rendered.visibleText > 10000, 'Full narrative works with JavaScript disabled');
