@@ -25,10 +25,15 @@ const assert = require('node:assert/strict');
       assert.equal(response.status(), 200);
       for (const img of await page.locator('img').all()) await img.scrollIntoViewIfNeeded();
       await page.waitForFunction(() => [...document.images].every(img => img.complete));
+      await page.evaluate(() => Promise.all([...document.images].map(img => img.decode())));
       await page.evaluate(() => scrollTo(0, 0));
       await page.screenshot({ path: `${output}/${name}.png` });
       if (['desktop', 'small-mobile', 'dark'].includes(name)) await page.screenshot({ path: `${output}/${name}-full.png`, fullPage: true });
       if (name === 'mobile') await page.screenshot({ path: `${output}/mobile-full.png`, fullPage: true });
+      for (const section of ['.feature', '.oss', '.created', '.ai-method']) {
+        if (['desktop', 'small-mobile'].includes(name)) await page.locator(section).screenshot({ path: `${output}/${name}-${section.slice(1)}.png` });
+      }
+      await page.evaluate(() => scrollTo(0, 0));
       const rendered = await page.evaluate(() => ({
         h1: document.querySelector('h1').textContent,
         overflow: document.documentElement.scrollWidth > innerWidth,
@@ -74,6 +79,7 @@ const assert = require('node:assert/strict');
         await article.waitFor();
         for (const img of await article.locator('img').all()) await img.scrollIntoViewIfNeeded();
         await page.waitForFunction(() => [...document.querySelectorAll('article.markdown-body img')].every(img => img.complete));
+        await article.evaluate(el => Promise.all([...el.querySelectorAll('img')].map(img => img.decode())));
         const result = await article.evaluate(el => ({
           text: el.innerText,
           overflow: el.scrollWidth > el.clientWidth,
