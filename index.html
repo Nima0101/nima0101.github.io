@@ -55,7 +55,10 @@
       "url": "https://github.com/Nima0101/persistscope",
       "codeRepository": "https://github.com/Nima0101/persistscope",
       "programmingLanguage": "C++20",
-      "description": "A crash-consistency model checker for small persistence protocols with replayable counterexamples and explicit incomplete outcomes."
+      "description": "A crash-consistency model checker for small persistence protocols with replayable counterexamples and explicit incomplete outcomes.",
+      "creator": {
+        "@id": "https://nima0101.github.io/#person"
+      }
     },
     {
       "@type": "SoftwareSourceCode",
@@ -64,7 +67,10 @@
       "url": "https://github.com/Nima0101/hidweave",
       "codeRepository": "https://github.com/Nima0101/hidweave",
       "programmingLanguage": "Rust",
-      "description": "An offline library and CLI for comparing Human Interface Device report contracts and decoding identical bytes under different descriptors."
+      "description": "An offline library and CLI for comparing Human Interface Device report contracts and decoding identical bytes under different descriptors.",
+      "creator": {
+        "@id": "https://nima0101.github.io/#person"
+      }
     },
     {
       "@type": "SoftwareSourceCode",
@@ -73,7 +79,10 @@
       "url": "https://github.com/Nima0101/contingram",
       "codeRepository": "https://github.com/Nima0101/contingram",
       "programmingLanguage": "Rust",
-      "description": "Offline bounded recovery-policy synthesis and independent artifact verification for finite agent-tool contracts."
+      "description": "Offline bounded recovery-policy synthesis and independent artifact verification for finite agent-tool contracts.",
+      "creator": {
+        "@id": "https://nima0101.github.io/#person"
+      }
     }
   ]
 }</script>
@@ -82,7 +91,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead wrap">
   <a class="wordmark" href="https://nima0101.github.io/" aria-label="Nima Khaki, home"><span class="monogram" aria-hidden="true">NK</span><span>Engineering portfolio</span></a>
-  <nav aria-label="Primary"><a href="#open-source">Open source</a><a href="#engineering">Engineering</a><a href="mailto:nima.khakii@outlook.com">Contact</a></nav>
+  <nav aria-label="Primary"><a href="#contingram">AI systems</a><a href="#created-systems">Created systems</a><a href="#engineering">Engineering</a><a href="mailto:nima.khakii@outlook.com">Contact</a></nav>
 </header>
 <main id="main" class="wrap">
   <section class="hero" aria-labelledby="name">
@@ -90,7 +99,7 @@
       <p class="eyebrow">Software / Systems Engineer · Stockholm, Sweden</p>
       <h1 id="name">Nima Khaki<span class="period" aria-hidden="true">.</span></h1>
       <p class="lead">State. Ownership. Recovery.</p>
-      <p class="intro">I build reliable systems, backend and data workflows — with native applications and constrained AI tooling grounded in the same engineering questions.</p>
+      <p class="intro">I build systems that make uncertainty explicit: AI-agent recovery, backend and data workflows, and native applications. Contracts, ownership and executable evidence connect the work.</p>
       <div class="hero-links"><a href="https://github.com/Nima0101">GitHub · Nima0101 <span aria-hidden="true">↗</span></a><a href="https://github.com/Nima0101/Nima0101/blob/main/ENGINEERING_INDEX.md">Engineering index <span aria-hidden="true">↗</span></a><a href="mailto:nima.khakii@outlook.com">nima.khakii@outlook.com</a></div>
     </div>
     <div class="trace-panel" aria-hidden="true">
@@ -101,29 +110,57 @@
       <svg class="trace" viewBox="0 0 290 95" fill="none"><path d="M12 34H278M95 34L122 12H174L202 34M230 34V77H58V42"/><path class="replay" d="M230 34V77H58V42M53 47L58 42L63 47"/><circle cx="24" cy="34" r="5"/><circle cx="95" cy="34" r="5"/><circle cx="202" cy="34" r="5"/><circle cx="266" cy="34" r="5"/><path class="failure" d="M150 7L155 12L150 17L145 12Z"/></svg>
     </div>
   </section>
-  <section id="open-source" class="oss" aria-labelledby="oss-title">
-    <div class="section-heading"><h2 id="oss-title">Open source you can inspect</h2><p>Models, contracts, counterexamples.</p></div>
-    <div class="project-grid">
-      <article id="persistscope" class="project">
-        <p class="eyebrow">C++20 · Library &amp; CLI</p>
-        <h3><a href="https://github.com/Nima0101/persistscope">PersistScope <span aria-hidden="true">↗</span></a></h3>
-        <p>Find the crash that breaks a modeled persistence protocol. Replay the counterexample; distinguish a complete search from an exhausted budget.</p>
-        <p class="detail">Separate file and directory durability. In-memory models with explicit limits.</p>
-        <div class="project-links"><a href="https://github.com/Nima0101/persistscope/blob/main/docs/architecture.md">Model &amp; limits</a><a href="https://github.com/Nima0101/persistscope/actions/workflows/ci.yml">CI</a><a href="https://github.com/Nima0101/persistscope/releases">Releases</a></div>
-      </article>
-      <article id="hidweave" class="project">
-        <p class="eyebrow">Rust · Library &amp; CLI</p>
-        <h3><a href="https://github.com/Nima0101/hidweave">hidweave <span aria-hidden="true">↗</span></a></h3>
-        <p>See how the same bytes acquire a different meaning. Compare Human Interface Device report contracts and decode a saved report under both descriptors.</p>
-        <p class="detail">An X/Y swap can preserve report length. Unsupported constructs fail explicitly.</p>
-        <div class="project-links"><a href="https://github.com/Nima0101/hidweave/blob/main/docs/contract.md">Contract &amp; limits</a><a href="https://github.com/Nima0101/hidweave/blob/main/docs/verification.md">Verification</a><a href="https://github.com/Nima0101/hidweave/releases">Releases</a></div>
-      </article>
+  <section class="feature" aria-labelledby="contingram">
+    <div class="feature-intro">
+      <div><p class="eyebrow">Featured open source · AI systems · Agent reliability</p>
+        <h2 id="contingram">Contingram</h2>
+        <p class="feature-lead">When a tool response disappears,<br class="desktop-break"> what is safe to do next?</p>
+        <p class="creator">Created and maintained by Nima Khaki</p>
+      </div>
+      <img class="feature-art" src="assets/projects/contingram.jpg" alt="Contingram project emblem" width="300" height="300" decoding="async">
     </div>
-    <p class="release-note">PersistScope and hidweave have Linux, macOS and Windows releases with checksums. Public CI covers tests, sanitizers, fuzzing checks and CodeQL analysis.</p>
-    <article id="contingram" class="project bridge">
-      <div><p class="eyebrow">Rust · Agent tool interfaces</p><h3><a href="https://github.com/Nima0101/contingram">Contingram <span aria-hidden="true">↗</span></a></h3></div>
-      <div><p>Offline recovery-policy synthesis for finite tool contracts. A separate verifier checks artifacts within a decision bound; compute exhaustion stays unknown. It never invokes tools.</p><div class="project-links"><a href="https://github.com/Nima0101/contingram/blob/main/docs/architecture.md">Model &amp; limits</a><a href="https://github.com/Nima0101/contingram/blob/main/docs/verification.md">Verification</a><a href="https://github.com/Nima0101/contingram/actions/workflows/ci.yml">CI</a></div></div>
+    <p class="feature-summary">A Rust library and CLI for <strong>offline bounded recovery-policy synthesis</strong>. Contingram models AI-agent tool contracts, uncertain side effects and the observations available to an agent. It determines whether a policy can safely reach the supplied model’s goal within a decision bound.</p>
+    <ol class="recovery-example" aria-label="A modeled recovery problem">
+      <li><span class="step-label">01 / The call</span><strong>An agent requests a payment-like action.</strong><p>The tool may commit a side effect.</p></li>
+      <li><span class="step-label">02 / The uncertainty</span><strong>The response is lost.</strong><p>The effect may be committed or absent; blindly repeating it may be unsafe.</p></li>
+      <li><span class="step-label">03 / The analysis</span><strong>Check whether safe recovery is possible.</strong><p>Contingram reasons over the modeled possibilities and emits evidence for independent checking.</p></li>
+    </ol>
+    <div class="feature-boundary"><p><strong>Evidence, with explicit limits.</strong> A separate verifier checks policy or bounded-obstruction artifacts without invoking the search algorithm. Parsing and model lowering remain shared assumptions. Exhausted compute or exploration budgets return <code>UNKNOWN</code>; a completed search can establish no policy within the chosen decision horizon. Results concern a finite model, not unrestricted real-world safety. Contingram never invokes production tools itself.</p></div>
+    <div class="project-links"><a href="https://github.com/Nima0101/contingram">Source &amp; example <span aria-hidden="true">↗</span></a><a href="https://github.com/Nima0101/contingram/blob/main/docs/architecture.md">Model &amp; limits</a><a href="https://github.com/Nima0101/contingram/blob/main/docs/verification.md">Verification</a><a href="https://github.com/Nima0101/contingram/actions/workflows/ci.yml">CI</a></div>
+  </section>
+  <section class="oss" aria-labelledby="open-source">
+    <div class="section-heading"><h2 id="open-source">Public open source</h2><p>Contracts you can inspect. Failures you can replay.</p></div>
+    <div class="oss-layout">
+      <div class="oss-art"><img src="assets/projects/persistscope-hidweave.jpg" alt="PersistScope and hidweave project logos" width="420" height="236" loading="lazy" decoding="async"><p>Two tools for finding meaning at a boundary: durable state and device reports.</p></div>
+      <div class="project-grid">
+        <article class="project"><p class="eyebrow">C++20 · Persistence correctness</p><h3 id="persistscope"><a href="https://github.com/Nima0101/persistscope">PersistScope <span aria-hidden="true">↗</span></a></h3><p class="creator">Created and maintained by Nima Khaki</p><p>Crash-consistency model checking for small persistence protocols, with replayable counterexamples and explicit incomplete results when exploration stops.</p><p class="detail">Models file-data and directory durability separately. Independent small-protocol checks, sanitizers and fuzzing complement the bounded model.</p><div class="project-links"><a href="https://github.com/Nima0101/persistscope/blob/main/docs/architecture.md">Model &amp; limits</a><a href="https://github.com/Nima0101/persistscope/actions/workflows/ci.yml">CI</a><a href="https://github.com/Nima0101/persistscope/releases">Releases</a></div></article>
+        <article class="project"><p class="eyebrow">Rust · Device contracts</p><h3 id="hidweave"><a href="https://github.com/Nima0101/hidweave">hidweave <span aria-hidden="true">↗</span></a></h3><p class="creator">Created and maintained by Nima Khaki</p><p>HID report-contract analysis that shows how identical bytes can change meaning after a descriptor change, even when report length stays the same.</p><p class="detail">Normalizes equivalent encodings and rejects unsupported constructs. Independent parser comparisons and fuzzing test the documented contract.</p><div class="project-links"><a href="https://github.com/Nima0101/hidweave/blob/main/docs/contract.md">Contract &amp; limits</a><a href="https://github.com/Nima0101/hidweave/actions/workflows/ci.yml">CI</a><a href="https://github.com/Nima0101/hidweave/releases">Releases</a></div></article>
+      </div>
+    </div>
+    <p class="release-note">PersistScope and hidweave publish Linux, macOS and Windows releases. Public source, CI and release artifacts provide distinct evidence of the work.</p>
+  </section>
+  <section class="created" aria-labelledby="created-systems">
+    <div class="section-heading"><h2 id="created-systems">Created product systems</h2><p>The same engineering questions, across different products.</p></div>
+    <article class="bistam-family" aria-labelledby="bistam">
+      <div class="product-intro"><div><p class="eyebrow">Mobility · Commerce · Native applications</p><h3 id="bistam">Bistam</h3><p class="creator">Created and engineered by Nima Khaki</p></div><p>A multi-surface platform connecting backend APIs and PostgreSQL, payment reconciliation, Swift/SwiftUI native applications, maps/location and partner/device execution.</p></div>
+      <div class="bistam-grid">
+        <div class="surface-card"><img src="assets/projects/bistam-rider.webp" alt="Bistam Rider wordmark" width="512" height="512" loading="lazy" decoding="async"><h4>Rider</h4><p>Customer journeys, checkout and account-scoped native lifecycle.</p></div>
+        <div class="surface-card"><img src="assets/projects/bistam-driver.jpg" alt="Bistam Driver wordmark" width="320" height="320" loading="lazy" decoding="async"><h4>Driver</h4><p>Driver workflows, location freshness and safe asynchronous state.</p></div>
+        <div class="surface-card"><img src="assets/projects/bistam-partner.jpg" alt="Bistam Partner wordmark" width="320" height="320" loading="lazy" decoding="async"><h4>Partner</h4><p>Commerce operations, durable device jobs and recovery after uncertain outcomes.</p></div>
+      </div>
+      <p class="family-note">Shared engineering: security and authentication boundaries, explicit state transitions, resource-aware CI and release-linked observability.</p>
     </article>
+    <div class="product-pair">
+      <article class="product-case" aria-labelledby="antagningsdata"><div class="product-art"><img src="assets/projects/antagningsdata.jpg" alt="Antagningsdata wordmark" width="420" height="140" loading="lazy" decoding="async"></div><p class="eyebrow">Data engineering · Reviewed publication</p><h3 id="antagningsdata">Antagningsdata</h3><p class="creator">Created and engineered by Nima Khaki</p><p>A Swedish education-data platform connecting source acquisition to an approved dataset. Python ingestion, provenance and lineage, deterministic identity, normalization and quarantine keep data decisions reviewable.</p><p class="detail">PostgreSQL publication, durable jobs, leases and recovery support TypeScript/Next.js readers. Source evidence and accepted publication remain separate states.</p></article>
+      <article class="product-case" aria-labelledby="cederdalen"><div class="product-art"><img src="assets/projects/cederdalen.jpg" alt="Cederdalen Natursten &amp; Material logo" width="420" height="210" loading="lazy" decoding="async"></div><p class="eyebrow">Product engineering · B2B commerce</p><h3 id="cederdalen">Cederdalen</h3><p class="creator">Created and engineered by Nima Khaki</p><p>Full-stack catalog and commercial workflows in Next.js, React, TypeScript and PostgreSQL/Supabase. Transactional quote/order flow and server-side validation keep accepted product decisions authoritative.</p><p class="detail">Customer/staff access boundaries and row-level security accompany accessible interfaces and technical SEO. Product implementation evidence is source-reviewed; historical build checks have their own scope.</p></article>
+    </div>
+  </section>
+  <section class="ai-method" aria-labelledby="ai-engineering">
+    <p class="eyebrow">Engineering practice</p><h2 id="ai-engineering">How I engineer with AI</h2>
+    <p class="method-lead">AI assists the engineering loop;<br>executable evidence decides what is accepted.</p>
+    <div class="method-grid"><p>I use OpenAI Codex/ChatGPT and other coding agents as constrained collaborators. I define <strong>system boundaries, failure models, invariants, acceptance criteria, security constraints and evidence requirements</strong>.</p><p>Agents help research alternatives, inspect systems, implement changes, generate test hypotheses, challenge designs and perform bounded verification. I retain responsibility for architecture, review, acceptance and release.</p></div>
+    <p class="method-sequence">Research → boundaries &amp; invariants → implementation → adversarial review → deterministic/property/fuzz/security tests → hosted CI → runtime/public evidence → release.</p>
+    <p class="method-note">Checks are selected for the system and claim. Source inspection, local tests, hosted CI, release artifacts and live behavior answer different questions.</p>
   </section>
   <section id="engineering" class="engineering-intro" aria-labelledby="engineering-title">
     <p class="eyebrow">Engineering beyond the public tools</p>
@@ -142,7 +179,7 @@
 </div></section><section class="chapter" aria-labelledby="ai-and-agent-infrastructure"><div class="chapter-label"><span class="number" aria-hidden="true">02</span><h2 id="ai-and-agent-infrastructure">AI and agent infrastructure</h2></div><div class="prose">
 <p>My applied-AI work includes backend controls around entitlement, resource budgets, allowed actions and recoverable accounting. One important failure case occurs when a provider has completed a model request but the accounting store is temporarily unavailable. Once a completion receipt is durably recorded, accounting can replay from it without repeating that successful request. Focused tests use controlled provider/database fixtures and filesystem journal operations to exercise this boundary.</p>
 <p>Developer tooling has a related authority problem: an AI agent's proposed action needs a defined contract. I have worked with Model Context Protocol (MCP) interfaces that validate schemas, check repository identity, restrict commands and support cancellable leased tasks. Shell-free execution, time/output limits, process-group cancellation and output redaction keep tool execution bounded.</p>
-<p>For a public model-relative example, <a href="https://github.com/Nima0101/contingram">Contingram</a> explores recovery policies for finite tool contracts and checks the resulting artifacts independently of its search. It runs offline without invoking tools.</p>
+<p>I created and maintain <a href="https://github.com/Nima0101/contingram">Contingram</a>, a Rust library and CLI for offline bounded recovery-policy synthesis over finite AI-agent tool contracts. Lost responses can conceal committed side effects. A separate verifier checks policy or bounded-obstruction artifacts without calling the solver; parsing and model lowering remain shared assumptions. Compute exhaustion returns UNKNOWN. Results are scoped to the supplied model and decision horizon; the tool never invokes production tools.</p>
 <p>Verification also needs identity. A result tied to one revision or workspace must not silently authorize changes to another. Evidence checks and explicit capability boundaries make that distinction reviewable. My focus here is the reliability of AI integrations and engineering automation: the same retry, ownership and recovery questions that matter in other backend systems.</p>
 </div></section><section class="chapter" aria-labelledby="backend-and-distributed-systems"><div class="chapter-label"><span class="number" aria-hidden="true">03</span><h2 id="backend-and-distributed-systems">Backend and distributed systems</h2></div><div class="prose">
 <p>TypeScript and Node.js work connects REST APIs, webhooks, background workers and external providers. I design stateful workflows around stable operation identity, clear transition ownership and explicit handling of uncertain external results. Retrying an API call, replaying a stored event and repeating a device side effect are different operations; their contracts need to say which one is safe.</p>
@@ -174,7 +211,7 @@
 <p>The verification and delivery toolkit includes CMake, CTest, XCTest, GitHub Actions, Docker, sanitizers, fuzzing, CodeQL and Sentry. I choose tools for the boundary being tested: memory lifetime, state transition, input contract, deployment identity or observed behavior.</p>
 </div></section><section class="chapter" aria-labelledby="engineering-method"><div class="chapter-label"><span class="number" aria-hidden="true">10</span><h2 id="engineering-method">Engineering method</h2></div><div class="prose">
 <p>Start with the invariant, identify its owner and define the failure states. Make uncertainty explicit, bound resource use and keep recovery repeatable. Then build checks that can contradict the design: competing owners, expired leases, account changes, interrupted writes, malformed data and delayed events. A useful counterexample is small enough to explain and replay.</p>
-<p>AI agents have assisted implementation and review, including the standalone C++ samples. My responsibilities are constraints, architecture, review, acceptance and verification. Generated changes need executable evidence and adversarial review. Source inspection, local tests, historical CI, release artifacts and live verification answer different questions; I keep the conclusion within the evidence that supports it.</p>
+<p>OpenAI Codex/ChatGPT and other AI coding agents assist research, implementation and adversarial review, including the standalone C++ samples. I define system boundaries, failure models, invariants, security constraints, acceptance criteria and evidence requirements. My responsibilities include architecture, review, acceptance and release. Generated changes need executable evidence and adversarial review. Source inspection, local tests, historical CI, release artifacts and live verification answer different questions; I keep the conclusion within the evidence that supports it.</p>
 <p>Good discussion topics include a crash between submission and acknowledgement, accounting recovery after model completion, publication while ingestion is incomplete, or an account change during token refresh. Each tests whether the state model remains understandable when the happy path stops.</p>
 </div></section></div>
   </div>

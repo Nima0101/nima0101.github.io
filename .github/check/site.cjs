@@ -4,8 +4,8 @@ const fs = require('node:fs');
 const assert = require('node:assert/strict');
 
 (async () => {
-  const browser = await chromium.launch();
-  const base = 'http://127.0.0.1:8765/';
+  const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE || undefined });
+  const base = process.env.SITE_URL || 'http://127.0.0.1:8765/';
   const output = 'site-artifacts';
   fs.mkdirSync(output, { recursive: true });
   const results = [];
@@ -23,15 +23,24 @@ const assert = require('node:assert/strict');
       page.on('request', request => requests.push(request.url()));
       const response = await page.goto(base, { waitUntil: 'networkidle' });
       assert.equal(response.status(), 200);
+      for (const img of await page.locator('img').all()) await img.scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => [...document.images].every(img => img.complete));
+      await page.evaluate(() => scrollTo(0, 0));
       await page.screenshot({ path: `${output}/${name}.png` });
+      if (name === 'desktop') await page.screenshot({ path: `${output}/desktop-full.png`, fullPage: true });
       if (name === 'mobile') await page.screenshot({ path: `${output}/mobile-full.png`, fullPage: true });
       const rendered = await page.evaluate(() => ({
         h1: document.querySelector('h1').textContent,
         overflow: document.documentElement.scrollWidth > innerWidth,
         brokenFragments: [...document.querySelectorAll('a[href^="#"]')].filter(a => !document.getElementById(a.hash.slice(1))).map(a => a.hash),
         visibleText: document.body.innerText.length,
+        images: [...document.images].map(img => ({ src: img.getAttribute('src'), alt: img.alt, loaded: img.complete && img.naturalWidth > 0, width: img.getBoundingClientRect().width, naturalWidth: img.naturalWidth })),
+        headings: [...document.querySelectorAll('h1,h2,h3,h4,h5,h6')].map(h => Number(h.tagName[1])),
       }));
       assert.match(rendered.h1, /Nima Khaki/);
+      assert.equal(rendered.images.length, 7);
+      assert.ok(rendered.images.every(img => img.loaded && img.alt && img.width <= img.naturalWidth), `${name}: images load with alt text and without upscaling`);
+      assert.ok(rendered.headings.every((level, i, levels) => !i || level <= levels[i - 1] + 1), `${name}: heading hierarchy`);
       if (rendered.overflow) {
         console.error(await page.evaluate(() => [...document.querySelectorAll('main *')].filter(e => e.getBoundingClientRect().right > innerWidth).map(e => ({ tag: e.tagName, class: e.className, text: e.textContent.slice(0,160) }))));
       }
