@@ -4,6 +4,11 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      verify_live:
+        description: Also verify the deployed public Pages site
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -35,6 +40,12 @@ jobs:
             sleep 1
           done
           node .github/check/site.cjs
+      - name: Check deployed Pages
+        if: github.event_name == 'workflow_dispatch' && inputs.verify_live
+        env:
+          SITE_URL: https://nima0101.github.io/
+          SITE_ARTIFACTS: site-artifacts/live
+        run: node .github/check/site.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:

@@ -5,8 +5,8 @@ const assert = require('node:assert/strict');
 
 (async () => {
   const browser = await chromium.launch();
-  const base = 'http://127.0.0.1:8765/';
-  const output = 'site-artifacts';
+  const base = process.env.SITE_URL || 'http://127.0.0.1:8765/';
+  const output = process.env.SITE_ARTIFACTS || 'site-artifacts';
   fs.mkdirSync(output, { recursive: true });
   const results = [];
   try {
@@ -30,6 +30,8 @@ const assert = require('node:assert/strict');
         overflow: document.documentElement.scrollWidth > innerWidth,
         brokenFragments: [...document.querySelectorAll('a[href^="#"]')].filter(a => !document.getElementById(a.hash.slice(1))).map(a => a.hash),
         visibleText: document.body.innerText.length,
+        imagesWithoutAlt: [...document.images].filter(img => !img.hasAttribute('alt')).map(img => img.src),
+        structuredTypes: JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent)['@graph'].map(entity => entity['@type']),
       }));
       assert.match(rendered.h1, /Nima Khaki/);
       if (rendered.overflow) {
@@ -37,6 +39,15 @@ const assert = require('node:assert/strict');
       }
       assert.equal(rendered.overflow, false, `${name}: horizontal overflow`);
       assert.deepEqual(rendered.brokenFragments, []);
+      assert.deepEqual(rendered.imagesWithoutAlt, []);
+      assert.ok(rendered.structuredTypes.includes('Person'));
+      assert.ok(rendered.structuredTypes.includes('ProfilePage'));
+      assert.equal(rendered.structuredTypes.filter(type => type === 'SoftwareSourceCode').length, 3);
+      for (const img of await page.locator('img').all()) {
+        await img.scrollIntoViewIfNeeded();
+        await img.evaluate(el => el.decode());
+      }
+      await page.evaluate(() => scrollTo(0, 0));
       assert.ok(rendered.visibleText > 10000, 'Full narrative works with JavaScript disabled');
       assert.deepEqual(requests.filter(url => !url.startsWith(base)), [], 'No third-party page requests');
       await page.keyboard.press('Tab');
