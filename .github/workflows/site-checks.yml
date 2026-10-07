@@ -4,6 +4,15 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      verify_live:
+        description: Also verify the deployed public Pages site
+        type: boolean
+        default: false
+      profile_url:
+        description: Optional GitHub profile or README preview URL
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -35,6 +44,21 @@ jobs:
             sleep 1
           done
           node .github/check/site.cjs
+      - name: Check profile preview
+        if: github.event_name == 'workflow_dispatch' && inputs.profile_url != ''
+        env:
+          PROFILE_ONLY: 'true'
+          VERIFY_PROFILE: 'true'
+          PROFILE_URL: ${{ inputs.profile_url }}
+          SITE_ARTIFACTS: site-artifacts/profile-preview
+        run: node .github/check/site.cjs
+      - name: Check deployed Pages
+        if: github.event_name == 'workflow_dispatch' && inputs.verify_live
+        env:
+          VERIFY_PROFILE: 'true'
+          SITE_URL: https://nima0101.github.io/
+          SITE_ARTIFACTS: site-artifacts/live
+        run: node .github/check/site.cjs
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: always()
         with:
