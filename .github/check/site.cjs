@@ -42,11 +42,12 @@ const assert = require('node:assert/strict');
       assert.equal(new URL(page.url()).hash, '#main');
       await page.close();
 
-      const accessible = await browser.newPage({ viewport: { width, height }, colorScheme });
+      const context = await browser.newContext({ viewport: { width, height }, colorScheme });
+      const accessible = await context.newPage();
       await accessible.goto(base);
       const audit = await new AxeBuilder({ page: accessible }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
       results.push({ name, ...rendered, violations: audit.violations, incomplete: audit.incomplete.map(x => ({ id: x.id, nodes: x.nodes.length })), passedRules: audit.passes.length });
-      await accessible.close();
+      await context.close();
     }
     fs.writeFileSync(`${output}/report.json`, JSON.stringify(results, null, 2));
     console.log(JSON.stringify(results, null, 2));
